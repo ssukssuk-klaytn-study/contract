@@ -1,0 +1,23 @@
+{
+  "name": "contract",
+  "version": "1.0.0",
+  "description": "Klaytn Contract code",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ssukssuk-klaytn-study/contract.git"
+  },
+  "author": "Choi Kyuhyeon, Choi Joonmyung, Kim Geonhui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ssukssuk-klaytn-study/contract/issues"
+  },
+  "homepage": "https://github.com/ssukssuk-klaytn-study/contract#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^2.4.0",
+    "truffle": "^5.0.43"
+  }
+}
