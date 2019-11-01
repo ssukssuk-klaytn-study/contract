@@ -1,7 +1,6 @@
 pragma solidity ^0.5.0;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
-// import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20Detailed.sol";
 
 contract SSToken is ERC20 {
 	string private _name;
@@ -9,11 +8,11 @@ contract SSToken is ERC20 {
 	uint8 private _decimals;
 
 	/**
-	* @dev Sets the values for `name`, `symbol`, and `decimals`. All three of
+	* @dev Sets the values for 'initialSupply', '`name`, `symbol`, and `decimals`. All three of
 	* these values are immutable: they can only be set once during
 	* construction.
 	*/
-	constructor(uint256 initialSupply, string name, ) public {
+	constructor(uint256 initialSupply, string memory name, string memory symbol, uint8 decimals) public {
 		_mint(msg.sender, initialSupply);
 		_name = name;
     _symbol = symbol;
