@@ -1,8 +1,9 @@
 pragma solidity ^0.5.0;
 
 import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20Mintable.sol";
 
-contract FundingToken is ERC20 {
+contract SSToken is ERC20, ERC20Mintable {
 	uint256 private _price;
 	string private _name;
 	string private _symbol;
@@ -12,13 +13,11 @@ contract FundingToken is ERC20 {
 	* these values are immutable: they can only be set once during
 	* construction.
 	*/
-	constructor(uint256 initialSupply,
-							uint256 price,
+	constructor(uint256 price,
 							string memory name,
 							string memory symbol,
 							uint8 decimals
 	) public {
-		_mint(msg.sender, initialSupply);
 		_price = price;
 		_name = name;
     _symbol = symbol;
