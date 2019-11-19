@@ -121,11 +121,11 @@ contract Project {
     uint _price
   ){
     _projectContract = address(this);
-    _owner = this.owner,
-    _fundingGoal = this.fundingGoal,
-    _deadline = this.deadline,
-    _tokenContract = address(fundingToken),
-    _name = fundingToken.name(),
+    _owner = this.owner;
+    _fundingGoal = this.fundingGoal;
+    _deadline = this.deadline;
+    _tokenContract = address(fundingToken);
+    _name = fundingToken.name();
     _symbol = fundingToken.symbol(),
     _price = fundingToken.price());
   }
