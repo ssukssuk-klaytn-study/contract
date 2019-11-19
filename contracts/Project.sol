@@ -53,13 +53,24 @@ contract Project {
     stage = FundingStage.Open;
   }
 
-  modifier onlyOwner {
-    require(msg.sender == owner, "Not Authorized Owner");
-    _;
+  modifier stageOnly(uint num) {
+    if (num == 0) {
+      require(stage == FundingStage.Open, "Not Accepted");
+     _;
+    } else if (num == 1) {
+      require(stage == FundingStage.GoalReached, "Not Accepted");
+      _;
+    } else if (num == 2) {
+      require(stage == FundingStage.Distribution, "Not Accepted");
+      _;
+    } else if (num == 3) {
+      require(stage == FundingStage.Failed, "Not Accepted");
+      _;
+    }
   }
 
-  modifier onlyGoalReached {
-    require(stage == FundingStage.GoalReached, "Not Accepted");
+  modifier onlyOwner {
+    require(msg.sender == owner, "Not Authorized Owner");
     _;
   }
 
@@ -93,6 +104,7 @@ contract Project {
       stage = FundingStage.Failed;
       return "Failed";
     }
+    return "Wrong Input";
   }
 
 
@@ -105,7 +117,7 @@ contract Project {
   /**
    * @dev fund function
    */
-  function fund() public payable returns (bool) {
+  function fund() public payable stageOnly(0) returns (bool) {
     require(fundingStage() == FundingStage.Open, "모금 기간이 종료되었습니다..");
     require(msg.value > 0, "부적절한 입력값입니다. value를 확인하세요.");
 
@@ -122,11 +134,11 @@ contract Project {
     return true;
   }
 
-  function withdraw() public onlyOwner returns (bool) {
+  function withdraw() public onlyOwner stageOnly(1) returns (bool) {
     msg.sender.transfer(address(this).balance);
   }
 
-  function refund() public {
+  function refund() public stageOnly(3) {
     // 기간 내에 목표 금액이 모이지 않았을 시에만 환불 가능
     require(stage == FundingStage.Failed, "funding was not failed");
     // owner에게 보낼 토큰 양
@@ -141,7 +153,7 @@ contract Project {
   /**
    * @dev distribute margins to fund raisers
    */
-  function distribute(uint256 margin) public returns (bool) {
+  function distribute(uint256 margin) public stageOnly(2) returns (bool) {
     for (uint i = 0; i < fundRaisers.length; i++) {
       uint ratio = fundingToken.balanceOf(fundRaisers[i]).div(amountRaised());
       uint amount = margin.mul(ratio);
