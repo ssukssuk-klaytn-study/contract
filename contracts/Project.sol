@@ -107,7 +107,28 @@ contract Project {
     return "Wrong Input";
   }
 
-
+  /**
+   * @dev get project info
+   */
+  function getProjectInfo() public view returns (
+    address _projectContract,
+    address _owner,
+    uint _fundingGoal,
+    uint _deadline,
+    address _tokenContract,
+    string memory _name,
+    string memory _symbol,
+    uint _price
+  ){
+    _projectContract = address(this);
+    _owner = this.owner,
+    _fundingGoal = this.fundingGoal,
+    _deadline = this.deadline,
+    _tokenContract = address(fundingToken),
+    _name = fundingToken.name(),
+    _symbol = fundingToken.symbol(),
+    _price = fundingToken.price());
+  }
 
   /**
    * @dev deposit function
