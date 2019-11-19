@@ -20,11 +20,11 @@ contract Project {
     Failed            // 데드라인까지 목표금액 달성에 실패, 프로젝트는 Closed 상태가 된다.
   }
 
-  uint creationTime;
+  uint public creationTime;
   uint public deadline;
   uint public fundingGoal;
-  address public owner;
-  address public backAccount;
+  address private owner;
+  address private backAccount;
   address payable[] private fundRaisers;
   FundingStage stage;
   SSToken public fundingToken;
@@ -121,13 +121,13 @@ contract Project {
     uint _price
   ){
     _projectContract = address(this);
-    _owner = this.owner;
-    _fundingGoal = this.fundingGoal;
-    _deadline = this.deadline;
+    _owner = owner;
+    _fundingGoal = fundingGoal;
+    _deadline = deadline;
     _tokenContract = address(fundingToken);
     _name = fundingToken.name();
-    _symbol = fundingToken.symbol(),
-    _price = fundingToken.price());
+    _symbol = fundingToken.symbol();
+    _price = fundingToken.price();
   }
 
   /**
