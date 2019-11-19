@@ -18,13 +18,11 @@ contract StandardFundingHub is FundingHub, Owned {
         public
     {
         owner = msg.sender;
-        status = Status.Active;
     }
 
     function createProject(
         uint _fundingGoal,
         uint _deadline)
-        atStatus(Status.Active)
         public
         returns (Project projectContract)
     {
@@ -38,8 +36,7 @@ contract StandardFundingHub is FundingHub, Owned {
         emit LogStandardProjectCreation(msg.sender, projectContract);
     }
 
-    function contribute(Project _project, uint _amount)
-        atStatus(Status.Active) public {
+    function contribute(Project _project, uint _amount) public {
         require(address(_project) != address(0) && _amount > 0, "Status Error");
         // Project(_project).fund(_amount, msg.sender);
         Project(_project).fund();
@@ -52,12 +49,5 @@ contract StandardFundingHub is FundingHub, Owned {
         projects[_projectHash] = _projectContract;
         projectList[_projectHash] = projectList[0x0];
         projectList[0x0] = _projectHash;
-    }
-
-    function toggleActive()
-        fromOwner
-        public
-    {
-        status = status == Status.Active ? Status.Inactive : Status.Active;
     }
 }
