@@ -8,11 +8,6 @@ contract StandardFundingHub is FundingHub, Owned {
     mapping (bytes32 => Project) public projects;
     mapping (bytes32 => bytes32) public projectList;
 
-    modifier atStatus(Status _expectedStatus) {
-        require(status == _expectedStatus, "Status Error");
-        _;
-    }
-
     constructor (
     )
         public
