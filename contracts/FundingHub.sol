@@ -1,10 +1,11 @@
 pragma solidity ^0.5.0;
 
-import './StandardProject.sol';
+import './Project.sol';
 
 contract FundingHub {
+// 주소 & contract 매핑해서 프로젝트를 만듦
 
-    event LogStandardProjectCreation(address indexed projectCreator, StandardProject indexed standardProject);
+    event LogStandardProjectCreation(address indexed projectCreator, Project indexed standardProject);
     event LogProjectContribution(address indexed projectContract, address contributor, uint contribution);
 
     enum Status {
@@ -16,6 +17,6 @@ contract FundingHub {
     uint public createdAtBlock;
     Status public status;
 
-    function createProject(uint _fundingCap, uint _deadline) public returns(StandardProject);
-    function contribute(StandardProject _project, uint _contribution) public;
+    function createProject(uint _fundingGoal, uint _deadline) public returns(Project);
+    function contribute(Project _project, uint _contribution) public;
 }

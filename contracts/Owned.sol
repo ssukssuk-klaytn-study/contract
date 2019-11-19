@@ -18,3 +18,4 @@ contract Owned {
         owner = newOwner;
     }
 }
+// mint : 화폐 발행, 실행한 이후에도 화폐를 발행할 수 있도록
