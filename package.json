@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/ssukssuk-klaytn-study/contract#readme",
   "dependencies": {
-    "@openzeppelin/contracts": "^2.4.0",
+    "@openzeppelin/contracts": "^4.7.2",
     "truffle": "^5.0.43"
   }
 }
