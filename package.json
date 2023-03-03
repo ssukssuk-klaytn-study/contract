@@ -18,6 +18,6 @@
   "homepage": "https://github.com/ssukssuk-klaytn-study/contract#readme",
   "dependencies": {
     "@openzeppelin/contracts": "^2.4.0",
-    "truffle": "^5.0.43"
+    "truffle": "^5.7.9"
   }
 }
